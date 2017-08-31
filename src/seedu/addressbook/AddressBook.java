@@ -455,7 +455,7 @@ public class AddressBook {
         showToUser(personsFound);
         return getMessageForPersonsDisplayedSummary(personsFound);
     }
-
+    
     /**
      * Constructs a feedback message to summarise an operation that displayed a listing of persons.
      *
