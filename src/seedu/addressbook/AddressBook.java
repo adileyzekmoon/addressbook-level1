@@ -126,6 +126,8 @@ public class AddressBook {
     private static final String COMMAND_EXIT_DESC = "Exits the program.";
     private static final String COMMAND_EXIT_EXAMPLE = COMMAND_EXIT_WORD;
 
+    private static final String COMMAND_EDIT_NAME = "edit";
+
     private static final String DIVIDER = "===================================================";
 
 
