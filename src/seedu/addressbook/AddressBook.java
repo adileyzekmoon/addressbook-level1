@@ -407,6 +407,14 @@ public class AddressBook {
         return MESSAGE_EDIT_FAIL;
     }
 
+    /**
+     * Changes name with new name
+     */
+
+    private static void changeName(String newName, String[] person) {
+        person[PERSON_DATA_INDEX_NAME] = newName;
+
+    }
 
     /**
      * Splits raw user input into command word and command arguments string
