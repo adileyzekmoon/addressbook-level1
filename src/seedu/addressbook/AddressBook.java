@@ -7,9 +7,13 @@ package seedu.addressbook;
  * ====================================================================
  */
 
+import com.sun.xml.internal.bind.api.impl.NameConverter;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
@@ -400,6 +404,17 @@ public class AddressBook {
         for (int i = 0; i< ALL_PERSONS.size(); i++) {
             if (oldName.equals(getNameFromPerson(ALL_PERSONS.get(i)))) {
                 changeName(newName, ALL_PERSONS.get(i));
+
+                Path path  = Paths.get(DEFAULT_STORAGE_FILEPATH);
+                Charset charset = StandardCharsets.UTF_8;
+                try {
+                    String content = new String(Files.readAllBytes(path),charset);
+                    content = content.replaceAll(oldName, newName);
+                    Files.write(path, content.getBytes(charset));
+                }
+                catch (Exception e) {
+                    System.out.print(e.toString());
+                }
                 return MESSAGE_EDIT_SUCCESS;
             }
         }
