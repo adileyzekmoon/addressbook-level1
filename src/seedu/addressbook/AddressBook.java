@@ -83,6 +83,8 @@ public class AddressBook {
     private static final String MESSAGE_STORAGE_FILE_CREATED = "Created new empty storage file: %1$s";
     private static final String MESSAGE_WELCOME = "Welcome to your Address Book!";
     private static final String MESSAGE_USING_DEFAULT_FILE = "Using default storage file : " + DEFAULT_STORAGE_FILEPATH;
+    private static final String MESSAGE_EDIT_SUCCESS = "Edit succesfully implemented.";
+    private static final String MESSAGE_EDIT_FAIL = "Edit failed.";
 
     // These are the prefix strings to define the data type of a command parameter
     private static final String PERSON_DATA_PREFIX_PHONE = "p/";
@@ -384,6 +386,27 @@ public class AddressBook {
             return getMessageForInvalidCommandInput(commandType, getUsageInfoForAllCommands());
         }
     }
+    /**
+     * Edits a ame in address book
+     */
+
+    private static String executeEditName() {
+        Scanner myScanner = new Scanner(System.in);
+        System.out.print("\n Enter old name:");
+        String oldName = myScanner.nextLine();
+        System.out.print("\n Enter new name:");
+        String newName = myScanner.nextLine();
+
+        for (int i = 0; i< ALL_PERSONS.size(); i++) {
+            if (oldName.equals(getNameFromPerson(ALL_PERSONS.get(i)))) {
+                changeName(newName, ALL_PERSONS.get(i));
+                return MESSAGE_EDIT_SUCCESS;
+            }
+        }
+
+        return MESSAGE_EDIT_FAIL;
+    }
+
 
     /**
      * Splits raw user input into command word and command arguments string
